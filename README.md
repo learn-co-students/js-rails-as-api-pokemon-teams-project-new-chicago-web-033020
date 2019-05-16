@@ -33,11 +33,14 @@ rendering JSON to try and solve these challenges.
 
 - When a user loads the page, they should see all trainers, with their current team of Pokemon.
 - Whenever a user hits Add Pokemon and they have space on their team, they should get a new Pokemon.
-- Whenever a user hits Release Pokemon on a specific Pokemon team, that specific Pokemon should be released from the team.
+- Whenever a user hits Release Pokemon on a specific Pokemon team, that specific Pokemon should be 
+released from the team.
 
 ## Backend
 
-Create a backend from scratch inside this lesson using an API-only Rails build and the following guidelines to get started:
+Create a backend from scratch inside this lesson using an API-only Rails build.
+Exactly how you choose to structure things and the following guidelines to get
+started:
 
 ```sh
 rails new pokemon-teams-backend --api
@@ -57,12 +60,12 @@ following to `config/application.rb` inside `class Application <
 Rails::Application` without replacing any other content:
 
 ```rb
-  config.middleware.insert_before 0, Rack::Cors do
-    allow do
-        origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :delete]
-    end
+config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins '*'
+    resource '*', headers: :any, methods: [:get, :post, :delete]
   end
+end
 ```
 
 With these gems installed, use the following resource generators to create
@@ -74,7 +77,8 @@ rails g resource pokemon species nickname trainer:references
 ```
 
 Run `rails db:migrate` to create a schema, models, and controllers. Using
-`trainer:references` will set up `belongs_to :trainer` in the `Pokemon` model.
+`trainer:references` will set up `belongs_to :trainer` in the `Pokemon` model,
+though it won't update the `Trainer` side of the relationship.
 
 In `db/seeds.rb`, add the following and run `rails db:seed`:
 
@@ -107,7 +111,7 @@ trainer_collection.each do |trainer|
 
   (1..team_size).each do |poke|
     name = Faker::Name.first_name
-    species = Faker::Pokemon.name
+    species = Faker::Games::Pokemon.name
     Pokemon.create(nickname: name, species: species, trainer_id: trainer.id)
   end
 end
