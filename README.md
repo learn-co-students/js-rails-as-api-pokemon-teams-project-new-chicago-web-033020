@@ -31,9 +31,9 @@ rendering JSON to try and solve these challenges.
 
 ## Goals
 
-**Note:** There are no tests in this lesson so `learn` will not work. Rather, your task is to work 
-towards the goals below by building both a Rails API and JavaScript frontend together. The specific
-implementation for achieving these goals is left to you.
+**Note:** There are no tests in this lesson so running the `learn` command will not work. Rather, your 
+task is to build towards the goals below by constructing both a Rails API and JavaScript frontend together. 
+The specific implementation for achieving these goals is left to you.
 
 - When a user loads the page, they should see all trainers, with their current team of Pokemon.
 - Whenever a user hits Add Pokemon and they have space on their team, they should get a new Pokemon.
