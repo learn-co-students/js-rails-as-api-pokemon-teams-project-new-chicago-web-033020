@@ -23,22 +23,18 @@ function renderTrainers(trainerList){
 
 // this is to create a div for each trainer
 function renderTrainer(trainer){
-  //build the div with trainer info plus a add button
-  let trainerdiv = `<div class="card" id=${trainer.id} data-id=${trainer.id}>`
-  trainerdiv += `<p>${trainer.name}</p><button data-action="add">Add Pokemon</button>`
-  
   // this is to get all pokemons under that trainer
   const trainerPokes = trainer.pokemons
-
-  // this is to build a ul with a pokemon in its own li. A release button is also
-  // added in the li
-  let ul1 = `<ul>`
+  
+  // this is to build the li list of all the trainer's pokemon
+  let lis = ""
   trainerPokes.forEach((poke) => {
-    ul1 += `<li> ${poke.nickname} (${poke.species})<button class="release" data-pokemon-id=${poke.id}>Release</button></li>`
+    lis += `<li> ${poke.nickname} (${poke.species})<button class="release" data-pokemon-id=${poke.id}>Release</button></li>`
   })
-  ul1 += `</ul>`
-  trainerdiv += ul1
-  trainerdiv += `</div>`
+  // this is to build the trainer's div node inserting the li created above within the ul
+  let trainerdiv = `<div class="card" id=${trainer.id} data-id=${trainer.id}>` +
+  `<p>${trainer.name}</p><button data-action="add">Add Pokemon</button>` + 
+  `<ul> ${lis} </ul>` + `</div>`
   //set the entire html string within the container
   pokeContainer.innerHTML += trainerdiv
   
@@ -59,20 +55,24 @@ function handleClick(e){
   } else if (e.target.dataset.action === "add") {
     // build data structure to add new pokemon
     // trainer id is in the data-id in parentNode
-    e.preventDefault();
-    const formData = {
-      "trainer_id": e.target.parentNode.dataset.id
+    const ul = e.target.parentNode.querySelector('ul')
+    // check how many li this card has to make sure we don't add when it already has 6
+    if (ul.childElementCount < 6) {
+      e.preventDefault();
+      const formData = {
+        "trainer_id": e.target.parentNode.dataset.id
+      }
+      const reqObj = {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      }
+      fetch(POKEMONS_URL, reqObj)
+      .then(resp => resp.json())
+      .then(pokea => addPokemon(pokea))
     }
-    const reqObj = {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(formData)
-    }
-    fetch(POKEMONS_URL, reqObj)
-    .then(resp => resp.json())
-    .then(pokea => addPokemon(pokea))
   }
 
   // this is to remove the pokemon from DOM
