@@ -6,7 +6,7 @@ function main(){
 
   getTrainers();
   // this watch for click on the entire pokemon container
-  pokeContainer.addEventListener("click", (event) => handleClick(event))
+  pokeContainer.addEventListener("click", handleClick)
 }
 // this function get all trainser from rails api
 function getTrainers(){
