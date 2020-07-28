@@ -53,7 +53,18 @@ started:
 rails new pokemon-teams-backend --api
 ```
 
-Once the backend is created, navigate into the new folder. Within this new Rails
+Once the backend is created, navigate into the new folder. 
+
+> **Note:** When creating a new Rails app, a `.git` folder is also generated. However,
+> since this is _already_ a Git repo, it is recommended you remove this folder to prevent
+> issues with submitting to Learn. Make sure you're in the new Rails app and not the parent 
+> folder, then run the following to remove the `.git` file:
+>
+> ```
+> rm -rf .git
+> ```
+
+Within this new Rails
 build, add the following gem to the Gemfile:
 
 ```rb
