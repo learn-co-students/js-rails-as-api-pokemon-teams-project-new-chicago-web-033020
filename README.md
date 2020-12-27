@@ -22,7 +22,7 @@ Through their journey, a Pokemon trainer can only have 6 Pokemon on their team.
 As you build, the eventual goal of a fully functional Pokemon team
 organizer where we can add and remove Pokemon as needed:
 
-![Showing Finished Project Example](/pokemon-teams-frontend/assets/pokemon_teams.gif)
+![Showing Finished Project Example](https://curriculum-content.s3.amazonaws.com/module-3/pokemon_teams_completed.gif)
 
 Although we have not explicitly gone over some of the CRUD actions involved in
 adding and deleting relationships in this section of content, refer back to what
